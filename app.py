@@ -104,5 +104,5 @@ def reportes():
     balance = ventas_total - gastos_total
     return render_template("reportes.html", ventas_total=ventas_total, gastos_total=gastos_total, balance=balance)
 
-if _name_ == "__main__":
+if _name_ == "_ _main_ _":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
