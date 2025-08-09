@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from functools import wraps
 
-app = Flask(_name_)
+app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "devsecret")
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "sqlite:///corpex_demo.db")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -104,5 +104,5 @@ def reportes():
     balance = ventas_total - gastos_total
     return render_template("reportes.html", ventas_total=ventas_total, gastos_total=gastos_total, balance=balance)
 
-if _name_ == "_main_":
+if _name_ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
