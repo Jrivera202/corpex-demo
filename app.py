@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from functools import wraps
 
-app = Flask(__name__)
+app = Flask(_name_)
 app.secret_key = os.environ.get("SECRET_KEY", "devsecret")
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "sqlite:///corpex_demo.db")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -23,15 +23,12 @@ class Gasto(db.Model):
     descripcion = db.Column(db.String(200))
     monto = db.Column(db.Float)
 
-# ✅ Flask 3: Crear la base de datos al iniciar la app
+# ✅ Flask 3: Crear la BD al iniciar
 with app.app_context():
     db.create_all()
 
-USERS = {
-    "agencia1": "demo123"
-}
+USERS = {"agencia1": "demo123"}
 
-# ✅ Decorador corregido con wraps para evitar errores
 def login_required(view):
     @wraps(view)
     def wrapped(*args, **kwargs):
@@ -107,5 +104,5 @@ def reportes():
     balance = ventas_total - gastos_total
     return render_template("reportes.html", ventas_total=ventas_total, gastos_total=gastos_total, balance=balance)
 
-if _name_ == "__main__":
+if _name_ == "_main_":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
