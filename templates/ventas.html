@@ -1,0 +1,40 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ventas - CorpEx</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header>
+    <div class="brand">CorpEx Logistics - Demo</div>
+    <nav>
+      <a href="{{ url_for('ventas') }}" class="active">Ventas</a>
+      <a href="{{ url_for('gastos') }}">Gastos</a>
+      <a href="{{ url_for('reportes') }}">Reportes</a>
+      <a href="{{ url_for('logout') }}">Salir</a>
+    </nav>
+  </header>
+  <div class="container">
+    <h1>Registrar Venta</h1>
+    <form method="post" class="card row">
+      <input type="text" name="descripcion" placeholder="Descripción" required>
+      <input type="number" step="0.01" name="monto" placeholder="Monto (Q)" required>
+      <button type="submit">Guardar</button>
+    </form>
+    <h2>Ventas</h2>
+    <table>
+      <thead><tr><th>Fecha</th><th>Descripción</th><th>Monto (Q)</th></tr></thead>
+      <tbody>
+        {% for v in ventas %}
+          <tr><td>{{ v.fecha.strftime('%Y-%m-%d %H:%M') }}</td><td>{{ v.descripcion }}</td><td>{{ '%.2f' % v.monto }}</td></tr>
+        {% else %}
+          <tr><td colspan="3">Sin registros</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

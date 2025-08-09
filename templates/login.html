@@ -1,0 +1,30 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CorpEx Logistics - Demo</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container small">
+    <h1>CorpEx Logistics</h1>
+    <h2>Demo de acceso</h2>
+    <form method="post" class="card">
+      <label>Usuario</label>
+      <input type="text" name="user" placeholder="agencia1" required>
+      <label>Contraseña</label>
+      <input type="password" name="password" placeholder="demo123" required>
+      <button type="submit">Ingresar</button>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for cat,msg in messages %}
+            <div class="flash {{cat}}">{{ msg }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </form>
+  </div>
+</body>
+</html>

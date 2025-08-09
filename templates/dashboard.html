@@ -1,0 +1,30 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel - CorpEx Logistics</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header>
+    <div class="brand">CorpEx Logistics - Demo</div>
+    <nav>
+      <a href="{{ url_for('ventas') }}">Ventas</a>
+      <a href="{{ url_for('gastos') }}">Gastos</a>
+      <a href="{{ url_for('reportes') }}">Reportes</a>
+      <a href="{{ url_for('logout') }}">Salir</a>
+    </nav>
+  </header>
+  <div class="container">
+    <h1>Resumen de hoy</h1>
+    <div class="cards">
+      <div class="kpi">Ventas Q {{ '%.2f' % ventas_total }}</div>
+      <div class="kpi">Gastos Q {{ '%.2f' % gastos_total }}</div>
+      <div class="kpi">Balance Q {{ '%.2f' % balance }}</div>
+    </div>
+    <p>Usa el menú para registrar ventas y gastos, luego mira los reportes.</p>
+  </div>
+</body>
+</html>
